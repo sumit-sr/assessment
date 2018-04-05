@@ -8,7 +8,16 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <header>
+    <%= render partial: 'common/header' %>
+  </header>
+
   <body>
+    <%= render partial: 'common/flash_msg' %>
     <%= yield %>
   </body>
+
+  <footer>
+    <%= render partial: 'common/footer' %>
+  </footer>
 </html>

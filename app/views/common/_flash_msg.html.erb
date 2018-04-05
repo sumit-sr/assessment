@@ -1,0 +1,8 @@
+<% flash.each do |name, msg| %>
+  <% unless msg.blank? %>
+    <div class="<%= flash_class(name.to_sym) %> fade in">
+      <a href="#" data-dismiss="alert" class="close">×</a>
+      <%= content_tag :p, flash[name.to_sym] %>
+    </div>
+  <% end %>
+<% end %>
