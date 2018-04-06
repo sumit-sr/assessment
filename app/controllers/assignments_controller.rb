@@ -1,9 +1,10 @@
 class AssignmentsController < ApplicationController
+  before_action :faculty_access_only
   before_action :set_assignment, only: [:show, :edit, :update, :destroy]
 
   # GET /assignments
   def index
-    @assignments = Assignment.all
+    @assignments = current_user.assignments
   end
 
   # GET /assignments/1
@@ -12,7 +13,7 @@ class AssignmentsController < ApplicationController
 
   # GET /assignments/new
   def new
-    @assignment = Assignment.new
+    @assignment = current_user.assignments.new
   end
 
   # GET /assignments/1/edit
@@ -21,7 +22,7 @@ class AssignmentsController < ApplicationController
 
   # POST /assignments
   def create
-    @assignment = Assignment.new(assignment_params)
+    @assignment = current_user.assignments.new(assignment_params)
 
     if @assignment.save
       redirect_to @assignment, notice: 'Assignment was successfully created.'
@@ -46,6 +47,10 @@ class AssignmentsController < ApplicationController
   end
 
   private
+    def faculty_access_only
+      redirect_to root_path, notice: 'Only Faculty can can access that page!' unless current_user.is_faculty?
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_assignment
       @assignment = Assignment.find(params[:id])
