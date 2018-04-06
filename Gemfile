@@ -4,6 +4,7 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
+
 ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -45,10 +46,7 @@ gem 'cancan', '~> 1.6', '>= 1.6.10'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'pry'
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13'
-  gem 'selenium-webdriver'
 end
 
 group :development do
@@ -62,3 +60,19 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+group :test do
+  gem 'factory_girl_rails'
+  gem 'rspec-rails', '~> 3.6'
+  gem 'spring-commands-rspec'
+  gem 'webmock'
+  gem 'database_cleaner'
+  gem 'rspec-retry'
+  gem 'shoulda-matchers'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'rails-controller-testing'
+  gem "chromedriver-helper"
+  gem 'shoulda-callback-matchers', '~> 1.1.1'
+end
+
