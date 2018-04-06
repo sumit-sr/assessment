@@ -10,7 +10,7 @@ class DashboardController < ApplicationController
       if current_user.has_role?(:admin)
         redirect_to admin_users_path
       elsif current_user.has_role?(:faculty)
-        redirect_to admin_users_path
+        redirect_to assignments_path
       elsif current_user.has_role?(:student)
         redirect_to admin_users_path
       end
