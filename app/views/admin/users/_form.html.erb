@@ -1,33 +1,51 @@
-<%= form_for(user, url: url) do |f| %>
-  <% if user &&  user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<div class="col-md-8 col-md-offset-2 user-form">
+  <%= form_for(user, url: url) do |f| %>
+    <% if user &&  user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= select_tag :role, options_for_select(user_role), class: 'form-control new-user-role' %>
+
+    <%= f.select :faculty_id, options_for_select(faculty_list), { include_blank: 'Select Faculty' }, class: 'form-control select-faculty', required: true %>
+
+    <%= f.email_field :email, autofocus: false, placeholder: 'Email', class: 'form-control' %>
+
+    <%= f.password_field :password, autocomplete: "off", placeholder: 'Password (Must be at least 6 characters)', class: 'form-control' %>
+    
+    <%= f.fields_for :profile, (f.object.profile || f.object.build_profile) do |ff| %>
+      <%= ff.text_field :first_name, required: true, placeholder: 'First name', class: 'form-control' %>
+      <%= ff.text_field :last_name, required: true, placeholder: 'Last name', class: 'form-control' %>
+      <%= ff.text_field :dob, required: true, placeholder: 'Date of Birth', class: 'form-control datepicker' %>
+    <% end %>
+    <br>
+
+    <div class="actions">
+      <%= f.submit class: 'btn btn-primary form-control' %>
     </div>
   <% end %>
-
-  <%= f.email_field :email, autofocus: false, placeholder: 'Email', class: 'form-control' %>
-  <%= f.password_field :password, autocomplete: "off", placeholder: 'Password (Must be at least 6 characters)', class: 'form-control' %>
-  
-  <%= f.fields_for :profile, (f.object.profile || f.object.build_profile) do |ff| %>
-    <%= ff.text_field :first_name, placeholder: 'First name', class: 'form-control' %>
-    <%= ff.text_field :last_name, placeholder: 'Last name', class: 'form-control' %>
-    <%= ff.text_field :dob, class: 'form-control datepicker' %>
-  <% end %>
-  <br>
-
-  <div class="actions">
-    <%= f.submit class: 'btn btn-primary' %>
-  </div>
-<% end %>
+</div>
 
 <script>
   $(document).ready(function(){
     $(".datepicker").datepicker({maxDate: 0});
+  });
+
+  $(document).on('change','.new-user-role',function(){
+    debugger
+    if ($(this).val() == 'student') {
+      $('.select-faculty').show();
+      $('.select-faculty').attr('required','required');
+    } else if ($(this).val() == 'faculty') {
+      $('.select-faculty').hide();
+      $('.select-faculty').removeAttr('required');
+    }
   });
 </script>

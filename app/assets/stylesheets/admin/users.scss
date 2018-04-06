@@ -1,3 +1,15 @@
 // Place all the styles related to the Admin::Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user-form {
+  .form-control {
+    margin: 10px 0;
+  }
+}
+.display_none {
+  display: none;
+}
+.mrg-10 {
+  margin: 0 10px;
+}
