@@ -13,35 +13,35 @@
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_area :title, id: :question_title %>
+    <%= form.text_area :title, id: :question_title, placeholder: 'Title', class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :option_1 %>
-    <%= form.text_field :option_1, id: :question_option_1 %>
+    <%= form.text_field :option_1, id: :question_option_1, placeholder: 'Option 1', class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :option_2 %>
-    <%= form.text_field :option_2, id: :question_option_2 %>
+    <%= form.text_field :option_2, id: :question_option_2, placeholder: 'Option 2', class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :option_3 %>
-    <%= form.text_field :option_3, id: :question_option_3 %>
+    <%= form.text_field :option_3, id: :question_option_3, placeholder: 'Option 3', class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :option_4 %>
-    <%= form.text_field :option_4, id: :question_option_4 %>
+    <%= form.text_field :option_4, id: :question_option_4, placeholder: 'Option 4', class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= form.label :correct_answer %>
-    <%= form.text_field :correct_answer, id: :question_correct_answer %>
+    <%= form.select :correct_answer, options_for_select(%w(option_1 option_2 option_3 option_4)), { include_blank: 'Select answer' }, class: 'form-control' %>
   </div>
-
+  <br><br>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-primary form-control' %>
   </div>
 <% end %>
