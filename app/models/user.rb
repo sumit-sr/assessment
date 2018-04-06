@@ -7,6 +7,10 @@ class User < ApplicationRecord
 
   after_create :assign_default_role
 
+  has_many :assignments
+  has_many :questions
+  has_many :answers
+
   private
 
   def assign_default_role
