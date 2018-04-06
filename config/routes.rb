@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :assignments
   root "dashboard#home"
 
   devise_for :users
