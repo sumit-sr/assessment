@@ -1,23 +1,48 @@
 <h1>Users</h1>
 
-<table>
+
+<table class="table">
   <thead>
     <tr>
-      <th colspan="3"></th>
+      <th>Group</th>
+      <th>First Name</th>
+      <th>Lastname</th>
+      <th>DOB</th>
+      <th>Email</th>
     </tr>
   </thead>
-
   <tbody>
     <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to 'Show', admin_user_path(user) %></td>
-        <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
-        <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <tr class="<%= user.role_class %>">
+        <td><%= user.group %></td>
+        <td><%= user.profile.try(:first_name) %></td>
+        <td><%= user.profile.try(:last_name) %></td>
+        <td><%= user.profile.try(:formated_dob) %></td>
+        <td><%= user.try(:email) %></td>
+        <td>
+          <%= link_to 'Show', admin_user_path(user) %> | 
+          <%= link_to 'Edit', edit_admin_user_path(user) %> |
+          <%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
+
+    <!-- <tr>
+      <td>Default</td>
+      <td>Defaultson</td>
+      <td>def@somemail.com</td>
+    </tr>      
+    <tr class="info">
+      <td>Success</td>
+      <td>Doe</td>
+      <td>john@example.com</td>
+    </tr>
+    <tr class="danger">
+      <td>Danger</td>
+      <td>Moe</td>
+      <td>mary@example.com</td> -->
+    </tr>
   </tbody>
 </table>
-
 <br>
-
 <%= link_to 'New Admin User', new_admin_user_path %>
