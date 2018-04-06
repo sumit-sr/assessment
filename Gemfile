@@ -34,6 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+gem 'bootstrap-datepicker-rails'
 
 # Use devise for user authentication
 gem 'devise', '~> 4.2'
@@ -41,6 +42,7 @@ gem 'devise', '~> 4.2'
 # User rolify and cancan for user role and access permission respectively
 gem 'rolify', '~> 5.1'
 gem 'cancan', '~> 1.6', '>= 1.6.10'
+gem "cocoon"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

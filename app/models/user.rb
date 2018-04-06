@@ -12,6 +12,12 @@ class User < ApplicationRecord
   has_many :questions
   has_many :answers
 
+  accepts_nested_attributes_for :profile, reject_if: :all_blank, allow_destroy: true
+
+  def is_admin?
+    has_role?(:admin)
+  end
+
   private
 
   def assign_default_role
