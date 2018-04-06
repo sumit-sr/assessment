@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-  before_action :redirect_as_per_user_role, only: [:home]
+  #before_action :redirect_as_per_user_role, only: [:home]
 
   def home;end
 
